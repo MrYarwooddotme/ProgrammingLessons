@@ -1,0 +1,29 @@
+Sub Main()
+        Dim wordList As New List(Of String)
+        Dim word, chosenWord As String
+        Dim addWord, r As Integer
+        Dim temp As String
+
+        Console.WriteLine("Welcome to the anagram game")
+        Console.WriteLine("How many words would you like to add?")
+        addWord = Console.ReadLine()
+        For i = 1 To addWord
+            Console.WriteLine("Add your word")
+            word = Console.ReadLine()
+            wordList.Add(word)
+        Next
+        Randomize()
+        wordList = wordList.OrderBy(Function() Rnd()).ToList
+        chosenWord = wordList(0)
+        'Console.WriteLine(chosenWord)
+        For x = 1 To Len(chosenWord)
+            r = Int(Rnd() * Len(chosenWord))
+            temp = Mid(chosenWord, x, 1)
+            Mid(chosenWord, x, 1) = Mid(chosenWord, r, 1)
+            Mid(chosenWord, r, 1) = temp
+            Console.Write(temp)
+
+
+        Next
+        Console.ReadKey()
+    End Sub
